@@ -31,6 +31,10 @@ const Selects2 = () => {
           <LoadingStateSelectWithDisabledOptions />
         </div>
         <div className="p-4 bg-white shadow rounded-lg">
+          <h3 className="text-xl font-semibold mb-4">Placement Customization</h3>
+          <PlacementCustomization />
+        </div>
+        <div className="p-4 bg-white shadow rounded-lg">
           <h3 className="text-xl font-semibold mb-4">Multi-Select With Limited Selection</h3>
           <MultiSelectWithLimitedSelection />
         </div>
@@ -38,10 +42,7 @@ const Selects2 = () => {
           <h3 className="text-xl font-semibold mb-4">Popup Styled Select</h3>
           <PopupStyledSelect />
         </div>
-        <div className="p-4 bg-white shadow rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Placement Customization</h3>
-          <PlacementCustomization />
-        </div>
+      
       </div>
     </div>
   );

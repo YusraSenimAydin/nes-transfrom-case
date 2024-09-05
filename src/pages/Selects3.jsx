@@ -13,7 +13,7 @@ const Selects3 = () => {
       <h2 className="text-2xl font-bold mb-4">Select Bileşenleri 3</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
       <div className="p-4 bg-white shadow rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Sorted Selectt</h3>
+          <h3 className="text-xl font-semibold mb-4">Selectable With Count</h3>
           <SelectableWithCount />
         </div>
         <div className="p-4 bg-white shadow rounded-lg">
@@ -29,7 +29,7 @@ const Selects3 = () => {
           <VirtualScroll />
         </div>
         <div className="p-4 bg-white shadow rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Virtual Scroll</h3>
+          <h3 className="text-xl font-semibold mb-4">Variants Select With Custom Icon</h3>
           <VariantsSelectWithCustomIcon />
         </div>
       </div>
