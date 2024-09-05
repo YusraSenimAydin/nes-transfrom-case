@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import CustomSelect from './CustomSelect/CustomSelect';
 import { usePosts } from '../hooks/usePosts';
-import { Spin, Alert } from 'antd';
+import FetchingWrapper from './FetchingWrapper';
 import debounce from 'lodash/debounce';
 
 const AsyncSearchSelect = () => {
@@ -15,12 +15,11 @@ const AsyncSearchSelect = () => {
 
   const debouncedSearch = useCallback(debounce(handleSearch, 300), []);
 
-  if (isLoading) return <Spin />;
-  if (error) return <Alert message="Error fetching posts" type="error" />;
 
   const options = posts.map(post => ({ label: post.title, value: post.id }));
 
   return (
+    <FetchingWrapper isLoading={isLoading} error={error}>
     <CustomSelect
       options={options}
       showSearch
@@ -29,7 +28,7 @@ const AsyncSearchSelect = () => {
         (option?.children ?? '').toLowerCase().includes(input.toLowerCase())
       }
       placeholder="Search and select"
-    />
+    /> </FetchingWrapper>
   );
 };
 

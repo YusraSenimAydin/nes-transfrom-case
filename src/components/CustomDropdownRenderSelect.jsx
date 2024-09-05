@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CustomSelect from './CustomSelect/CustomSelect';
 import { usePosts } from '../hooks/usePosts';
-import { Input, Button, message, Spin, Alert } from 'antd';
+import FetchingWrapper from './FetchingWrapper';
+import { Input, Button, message } from 'antd';
 
 const CustomDropdownRenderSelect = () => {
   const { data: posts = [], isLoading, error } = usePosts();
@@ -15,8 +16,6 @@ const CustomDropdownRenderSelect = () => {
     }
   }, [posts]); 
 
-  if (isLoading) return <Spin />;
-  if (error) return <Alert message="Error fetching posts" type="error" />;
 
   const handleAddItem = () => {
     if (newItem) {
@@ -60,11 +59,13 @@ const CustomDropdownRenderSelect = () => {
   );
 
   return (
+    <FetchingWrapper isLoading={isLoading} error={error}>
     <CustomSelect
       options={filteredOptions}
       dropdownRender={dropdownRender}
       placeholder="Select with custom dropdown"
     />
+    </FetchingWrapper>
   );
 };
 

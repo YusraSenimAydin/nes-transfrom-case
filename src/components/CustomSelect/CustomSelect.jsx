@@ -15,6 +15,9 @@ const CustomSelect = forwardRef(({
   suffixIcon,
   optionRender,
   labelRender,
+  autoFocus,
+  popupClassName,
+  popupMatchSelectWidth,
   ...props
 }, ref) => {
   const defaultDropdownRender = (menu) => menu;
@@ -31,6 +34,9 @@ const CustomSelect = forwardRef(({
       dropdownRender={dropdownRender || defaultDropdownRender}
       tagRender={tagRender}
       suffixIcon={suffixIcon}
+      autoFocus={autoFocus}
+      popupClassName={popupClassName}         
+      popupMatchSelectWidth={popupMatchSelectWidth}  
       style={{ width: '100%' }}
     >
       {options.map((option, index) => (

@@ -1,14 +1,10 @@
 import React from 'react';
 import CustomSelect from './CustomSelect/CustomSelect';
 import { usePosts } from '../hooks/usePosts';
-import { Spin, Alert } from 'antd';
+import FetchingWrapper from './FetchingWrapper';
 
 const CustomDropdownStyledSelect = () => {
   const { data: posts = [], isLoading, error } = usePosts();
-
-
-  if (isLoading) return <Spin />;
-  if (error) return <Alert message="Error fetching posts" type="error" />;
 
   const options = posts.map(post => ({
     label: post.title,
@@ -16,6 +12,7 @@ const CustomDropdownStyledSelect = () => {
   }));
 
   return (
+    <FetchingWrapper isLoading={isLoading} error={error}>
     <CustomSelect
       options={options}
       dropdownStyle={{ 
@@ -46,8 +43,9 @@ const CustomDropdownStyledSelect = () => {
           </div>
         </div>
       )}
-      placeholder="Select an option"
+      placeholder="Select with custom dropdown styled "
     />
+    </FetchingWrapper>
   );
 };
 

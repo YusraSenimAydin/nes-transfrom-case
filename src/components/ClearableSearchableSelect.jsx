@@ -1,15 +1,14 @@
-import React, {  useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import CustomSelect from './CustomSelect/CustomSelect';
 import { SearchOutlined } from '@ant-design/icons';
 import { usePosts } from '../hooks/usePosts';
-import { Spin, Alert } from 'antd';
+import FetchingWrapper from './FetchingWrapper';
 
 const ClearableSearchableSelect = () => {
   const { data: posts = [], isLoading, error } = usePosts();
   const [searchValue, setSearchValue] = useState('');
   const [selectedValue, setSelectedValue] = useState(null);
 
- 
   const filteredOptions = useMemo(() => {
     return posts
       .filter(post =>
@@ -24,25 +23,30 @@ const ClearableSearchableSelect = () => {
 
   const handleChange = value => {
     setSelectedValue(value);
+    setSearchValue('');
   };
 
-  if (isLoading) return <Spin />;
-  if (error) return <Alert message="Error fetching posts" type="error" />;
+  const handleClear = () => {
+    setSelectedValue(null);
+    setSearchValue('');
+  };
 
   return (
-    <CustomSelect
-      options={filteredOptions}
-      showSearch
-      value={selectedValue || searchValue}
-      placeholder="Select or search"
-      style={{ width: '100%' }}
-      onSearch={handleSearch}
-      onChange={handleChange}
-      filterOption={false}
-      allowClear
-      notFoundContent={filteredOptions.length === 0 ? 'No results found' : null}
-      suffixIcon={<SearchOutlined />}
-    />
+    <FetchingWrapper isLoading={isLoading} error={error}>
+      <CustomSelect
+        options={filteredOptions}
+        showSearch
+        value={selectedValue}
+        placeholder="Select or search"
+        onSearch={handleSearch}
+        onChange={handleChange}
+        filterOption={false}
+        allowClear
+        onClear={handleClear}
+        notFoundContent={filteredOptions.length === 0 ? 'No results found' : null}
+        suffixIcon={<SearchOutlined />}
+      />
+    </FetchingWrapper>
   );
 };
 

@@ -1,19 +1,17 @@
 import React from 'react';
 import CustomSelect from './CustomSelect/CustomSelect';
 import { usePosts } from '../hooks/usePosts';
-import { Spin, Alert } from 'antd';
+import FetchingWrapper from './FetchingWrapper';
 import { CheckOutlined } from '@ant-design/icons';
 
 const StatusIndicator = () => {
   const { data: posts = [], isLoading, error } = usePosts();
 
-  if (isLoading) return <Spin />;
-  if (error) return <Alert message="Error fetching posts" type="error" />;
-
   const options = posts.map(post => ({ label: post.title, value: post.id }));
 
   return (
     <>
+     <FetchingWrapper isLoading={isLoading} error={error}>
       <CustomSelect
         options={options}
         suffixIcon={<CheckOutlined style={{ color: 'green' }} />}
@@ -26,6 +24,7 @@ const StatusIndicator = () => {
         status="warning"
         placeholder="Select with status indicator"
       />
+      </FetchingWrapper>
     </>
   );
 };

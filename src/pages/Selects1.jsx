@@ -7,7 +7,7 @@ import {
   CustomDropdownRenderSelect,
   CustomDropdownStyledSelect,
   CustomOptionLabelRender,
-  CustomSuffixIcon
+  CustomSelectedLabelRender
 } from '../components';
 
 const Selects1 = () => {
@@ -44,8 +44,8 @@ const Selects1 = () => {
           <CustomOptionLabelRender />
         </div>
         <div className="p-4 bg-white shadow rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Custom Suffix Icon</h3>
-          <CustomSuffixIcon />
+          <h3 className="text-xl font-semibold mb-4">Custom Selected Label Render</h3>
+          <CustomSelectedLabelRender />
         </div>
       </div>
     </div>

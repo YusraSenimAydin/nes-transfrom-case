@@ -1,10 +1,7 @@
-import React, { useRef, useEffect, forwardRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import CustomSelect from './CustomSelect/CustomSelect';
 import { usePosts } from '../hooks/usePosts';
-import { Spin, Alert, Button } from 'antd';
-
-
-const CustomSelectWithRef = forwardRef((props, ref) => <CustomSelect {...props} forwardedRef={ref} />);
+import FetchingWrapper from './FetchingWrapper';
 
 const AutoFocusSelect = () => {
   const { data: posts = [], isLoading, error } = usePosts();
@@ -15,30 +12,20 @@ const AutoFocusSelect = () => {
   useEffect(() => {
     if (selectRef.current) {
       selectRef.current.focus(); 
+      console.log('CustomSelect is focused automatically');
     }
   }, []);
 
-  const handleBlur = () => {
-    if (selectRef.current) {
-      selectRef.current.blur(); 
-    }
-  };
-
-  if (isLoading) return <Spin />;
-  if (error) return <Alert message="Error fetching posts" type="error" />;
-
   return (
-    <>
+    <FetchingWrapper isLoading={isLoading} error={error}>
       <CustomSelect
         ref={selectRef}
         options={options}
         placeholder="Select an option"
-        onClear={() => console.log('Selection cleared')}
+        autoFocus 
+        
       />
-      <Button onClick={handleBlur} style={{ marginTop: '10px' }}>
-        Remove Focus (Blur)
-      </Button>
-    </>
+    </FetchingWrapper>
   );
 };
 

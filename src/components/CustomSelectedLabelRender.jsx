@@ -1,13 +1,10 @@
 import React from 'react';
-import { Spin, Alert } from 'antd';
 import CustomSelect from './CustomSelect/CustomSelect';
 import { usePosts } from '../hooks/usePosts';
+import FetchingWrapper from './FetchingWrapper';
 
 const CustomSelectedLabelRender = () => {
   const { data: posts = [], isLoading, error } = usePosts();
-
-  if (isLoading) return <Spin />;
-  if (error) return <Alert message="Error fetching posts" type="error" />;
 
   
   const options = posts.map(post => ({
@@ -24,11 +21,13 @@ const CustomSelectedLabelRender = () => {
   };
 
   return (
+    <FetchingWrapper isLoading={isLoading} error={error}>
     <CustomSelect
       options={options}
       labelRender={labelRender} 
       placeholder="Select an option"
     />
+    </FetchingWrapper>
   );
 };
 

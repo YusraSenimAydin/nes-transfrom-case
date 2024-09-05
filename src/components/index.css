@@ -1,0 +1,10 @@
+.custom-popup {
+  background-color: #F1D3CE; 
+  border-radius: 6px;       
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  padding: 8px 0;            
+  border: 1px solid #e0e0e0; 
+  z-index: 1000;             
+  max-height: 300px;         
+  overflow-y: auto;        
+}

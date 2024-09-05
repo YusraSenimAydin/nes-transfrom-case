@@ -1,13 +1,12 @@
 import React from 'react';
-import { Select, Tag, Spin, Alert } from 'antd';
+import { Select, Tag } from 'antd';
 import { usePosts } from '../hooks/usePosts'; 
+import FetchingWrapper from './FetchingWrapper';
 
 const ColorTagSelect = () => {
   const { data: posts = [], isLoading, error } = usePosts();
   const [selectedItems, setSelectedItems] = React.useState([]);
 
-  if (isLoading) return <Spin />;
-  if (error) return <Alert message="Error fetching posts" type="error" />;
 
   const colorMap = ['gold', 'green']; 
 
@@ -18,11 +17,11 @@ const ColorTagSelect = () => {
       event.stopPropagation();
     };
 
-
     const colorIndex = posts.findIndex(post => post.id === value) % colorMap.length;
     const color = colorMap[colorIndex];
 
     return (
+      <FetchingWrapper isLoading={isLoading} error={error}>
       <Tag
         color={color}
         onMouseDown={onPreventMouseDown}
@@ -38,6 +37,7 @@ const ColorTagSelect = () => {
       >
         {label}
       </Tag>
+      </FetchingWrapper>
     );
   };
 

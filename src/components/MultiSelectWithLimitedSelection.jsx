@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import CustomSelect from './CustomSelect/CustomSelect';
 import { usePosts } from '../hooks/usePosts';
-import { Spin, Alert } from 'antd';
+import FetchingWrapper from './FetchingWrapper';
 import { DownOutlined } from '@ant-design/icons';
 
-const MAX_COUNT = 3;
 
-const MultiSelectWithLimitedSelection = () => {
+const MultiSelectWithLimitedSelection = ({ MAX_COUNT = 3 }) => {
   const { data: posts = [], isLoading, error } = usePosts();
   const [selectedItems, setSelectedItems] = useState([]);
-
-  if (isLoading) return <Spin />;
-  if (error) return <Alert message="Error fetching posts" type="error" />;
 
   const options = posts.map(post => ({ label: post.title, value: post.id }));
 
@@ -31,15 +27,17 @@ const MultiSelectWithLimitedSelection = () => {
   );
 
   return (
-    <CustomSelect
-      mode="multiple"
-      options={options}
-      value={selectedItems}
-      onChange={handleChange}
-      placeholder={`Select up to ${MAX_COUNT} options`}
-      suffixIcon={suffix}
-      maxTagCount={MAX_COUNT}
-    />
+    <FetchingWrapper isLoading={isLoading} error={error}>
+      <CustomSelect
+        mode="multiple"
+        options={options}
+        value={selectedItems}
+        onChange={handleChange}
+        placeholder={`Select up to ${MAX_COUNT} options`}
+        suffixIcon={suffix}
+        maxTagCount={MAX_COUNT}
+      />
+    </FetchingWrapper>
   );
 };
 

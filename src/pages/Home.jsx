@@ -19,14 +19,14 @@ const Home = () => {
               <li><Link to="/selects1">CustomDropdownStyledSelect</Link> - Özel stillendirilmiş açılır menü.</li>
               <li><Link to="/selects1">CustomOptionLabelRender</Link> - Seçenek etiketleri için özel render.</li>
               <li><Link to="/selects1">CustomSelectedLabelRender</Link> - Seçilen etiketler için özel render.</li>
-              <li><Link to="/selects1">CustomSuffixIcon</Link> - Select için özel son ek simgesi.</li>
+              <li><Link to="/selects2">CustomSuffixIcon</Link> - Select için özel son ek simgesi.</li>
               <li><Link to="/selects2">FieldNameMapping</Link> - Dinamik alan adı eşleme.</li>
-              <li><Link to="/selects2">SelectableWithCount</Link> - Seçilebilir seçeneklerin sayısını gösterir.</li>
               <li><Link to="/selects2">LabelInValue</Link> - Seçimlerde hem değer hem de etiket döndürür.</li>
               <li><Link to="/selects2">LoadingStateSelectWithDisabledOptions</Link> - Veri yüklenirken yükleme durumunu gösterir ve devre dışı seçenekler içerir.</li>
               <li><Link to="/selects2">MultiSelectWithLimitedSelection</Link> - Seçim limiti ile çoklu seçim.</li>
               <li><Link to="/selects2">PlacementCustomization</Link> - Açılır menü yerleşimini özelleştirir.</li>
-              <li><Link to="/selects2">PopupStyledSelect</Link> - Stil verilmiş popup select.</li>
+              <li><Link to="/selects2">PopupStyledSelect</Link> - Stil verilmiş popup select.</li> 
+              <li><Link to="/selects3">SelectableWithCount</Link> - Seçilebilir seçeneklerin sayısını gösterir.</li>
               <li><Link to="/selects3">SortedSelect</Link> - Sıralı select bileşeni.</li>
               <li><Link to="/selects3">StatusIndicator</Link> - Seçeneklerin durumunu gösterir.</li>
               <li><Link to="/selects3">VirtualScroll</Link> - Sanal kaydırmayı devre dışı bırakır.</li>
